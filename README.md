@@ -3,28 +3,28 @@
 
 -------------------------------------------------------------------------------------
 
-안녕하세요 2023동계 계절학기 오픈소스sw프로젝트 03분반 수강생 20203145 문영현입니다.
+>>> 안녕하세요 2023동계 계절학기 오픈소스sw프로젝트 03분반 수강생 20203145 문영현입니다. <<<
 
 *지금까지 배웠거나 알고있는 프로그래밍언어들*
-• C
-• C++
-• java
-• python
-• mysql
-• Matlab
+1. C
+2. C++
+3. java
+4. python
+5. mysql
+6. Matlab
 
 *사용해본 개발환경*
-• Arduino 
-• Raspberry
-• Eclipse
-• idle
-• Visual studio
-• Virtual Box
-• Oracle Database
+1. Arduino 
+2. Raspberry
+3. Eclipse
+4. idle
+5. Visual studio
+6. Virtual Box
+7. Oracle Database
 
 *사용해본 api*
-• 카카오톡
-• 라인
+1. 카카오톡
+2. 라인
 
 *현재 나의 전공 트랙*
 1. 지능 IoT
