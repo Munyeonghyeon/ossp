@@ -50,9 +50,10 @@
 7. pong 게임 만들어보기(아두이노 활용)
 
 *최종 주제*
-c++을 이용한 관리 시
+c++을 이용한 관리 시스템
 
 *참고한 오픈소스 주소*
+
 https://github.com/AteeqRana7/Restaurant-Management-System
 https://github.com/Munyeonghyeon/BillManagementSystem
 -------------------------------------------------------------------------------------------------------------------------------------
