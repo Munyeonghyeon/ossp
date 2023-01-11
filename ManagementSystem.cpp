@@ -61,36 +61,36 @@ public:
 	} //주문취소
 
 	void showDeal() const{
-		cout << "--------" << dealName << "--------" << endl;
-		cout << " Items: " << dealItems << "--------" << endl;
-		cout << " Main Item Description: " << endl << " " << item::getItemDescription() << endl;
-		cout << " Cold Drink: " << coldDrink << endl;
-		cout << " Fries: " << fries << endl;
-		cout << " Deal Price: " << dealPrice << endl;
+		cout << "--------" << dealName << "--------";
+		cout << " 수량: " << dealItems << "--------";
+		cout << " 설명: " << " " << item::getItemDescription();
+		cout << " 음료: " << coldDrink;
+		cout << " 튀김: " << fries ;
+		cout << " 결제 가격: " << dealPrice ;
 	}
 
 	void setDealName(){
-		cout << " Enter Deal Name: ";
+		cout << " 메뉴명: ";
 		cin >> dealName;
 	} //메뉴명
 
 	void setDealItems(){
-		cout << " Enter Deal Items: ";
+		cout << " 메뉴 수량: ";
 		cin >> dealItems;
 	}//
 
 	void setColdDrink(){
-		cout << " Enter Cold Drink: ";
+		cout << " 음료: ";
 		cin >> coldDrink;
 	} // 음료주문
 
 	void setFries(){
-		cout << " Enter Fries: ";
+		cout << " 튀김: ";
 		cin >> fries;
 	} //튀김주문
 
 	void setDealPrice(){
-		cout << " Enter Deal Price: ";
+		cout << " 결제가격: ";
 		cin >> dealPrice;
 	}//주문가격
 
