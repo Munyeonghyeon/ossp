@@ -6,8 +6,8 @@ using namespace std;
 class admin //운영자 
 {
 private:
-	string const username = "문영현"; //운영자 계정 아이디, 변하지 않음
-	string const password = "0000"; //운영자 계정 비밀번호, 변하지 않음
+	string const username = "문영현"; //운영자 계정 아이디
+	string const password = "0000"; //운영자 계정 비밀번호
 public:
 	admin(){ } 
 	string getUsername() const { return username; }
@@ -365,19 +365,29 @@ public:
 	}
 };
 
+void startmenu(fastFoodRestaurant ls, int o, int u, int l); //시작페이지
 void mainMenu(fastFoodRestaurant ls, int os); //메인페이지
 void adminLogin(fastFoodRestaurant ls, int os); //운영자 로그인 페이지
 void adminMenu(fastFoodRestaurant ls, int os); //운영자 페이지
 void userMenu(fastFoodRestaurant ls, int os); //사용자 페이지
 
 int main(){
-	fastFoodRestaurant landOfSpices;
+	fastFoodRestaurant ls;
+	int o=0, l=0, u=0, os=0;
+	startmenu(ls, o, u, l); //시작페이지
+	mainMenu(ls, os); //메인페이지
+	adminLogin(ls, os); //운영자 로그인 페이지
+	adminMenu(ls, os); //운영자 페이지
+	userMenu(ls, os); //사용자 페이지
+}
+
+void startmenu(fastFoodRestaurant ls, int o, int u, int l) {
 	int orderSlot = 0;
 	int userOption = 0;
 	int loginOption = 0;
 
 	cout << "프로그램을 실행하기 전, 오늘의 날짜를 입력하세요 " << endl;
-	landOfSpices.setDate();
+	ls.setDate();
 
 	system("cls");
 
@@ -391,149 +401,8 @@ int main(){
 	cout << " ===============================" << endl;
 	cout << " 아무거나 입력하여 진행하세요..." << endl;
 	_getch();
-	system("cls"); //시스템에 접속했음을 알리는 메세지
 
-	cout << " ===============================" << endl;
-	cout << " |                             |" << endl;
-	cout << " |      옵션을 선택하세요      |" << endl;
-	cout << " |         1) 관리자           |" << endl;
-	cout << " |         2) 사용자           |" << endl;
-	cout << " |         3) 종료             |" << endl;
-	cout << " |                             |" << endl;
-	cout << " ===============================" << endl;
-	cin >> loginOption; //접속 옵션 입력 1~3
 	system("cls");
-
-	string username, password;
-
-	switch (loginOption){
-	case 1:
-		cout << " ===============================" << endl;
-		cout << "                              " << endl;
-		cout << "         - 로그인 -           " << endl;
-		cout << "        사용자이름: ", cin >> username;
-		cout << "        패스워드: ", cin >> password;
-		cout << "                              " << endl;
-		cout << "                              " << endl;
-		cout << " ===============================" << endl;
-		if ((landOfSpices.getAdminPassword() == password) && (landOfSpices.getAdminUsername() == username)){
-			system("cls");
-			int adminOption = 0;
-			cout << " ===============================" << endl;
-			cout << " |                             |" << endl;
-			cout << " |   원하는 옵션을 선택하세요  |" << endl;
-			cout << " |      1) 거래 추가           |" << endl;
-			cout << " |      2) 거래 취소           |" << endl;
-			cout << " |      3) 주문 조회           |" << endl;
-			cout << " |      4) 주문 상태 변경      |" << endl;
-			cout << " |      5) 메뉴 조회           |" << endl;
-			cout << " |      6) 로그아웃            |" << endl;
-			cout << " |                             |" << endl;
-			cout << " ===============================" << endl;
-			cin >> adminOption;
-			system("cls");
-			switch (adminOption){
-			case 1:
-				landOfSpices.setDeal();
-				system("cls");
-				adminMenu(landOfSpices, orderSlot);
-				break;
-			case 2:
-				landOfSpices.removeDeal();
-				system("cls");
-				adminMenu(landOfSpices, orderSlot);
-				break;
-			case 3:
-				landOfSpices.viewOrders();
-				system("cls");
-				adminMenu(landOfSpices, orderSlot);
-				break;
-			case 4:
-				landOfSpices.changeOrderStatus();
-				system("cls");
-				adminMenu(landOfSpices, orderSlot);
-				break;
-			case 5:
-				landOfSpices.displayMenu();
-				system("cls");
-				adminMenu(landOfSpices, orderSlot);
-				break;
-			case 6:
-				mainMenu(landOfSpices, orderSlot);
-				break;
-			default:
-				cout << "잘못된 옵션입니다. 다시 입력하세요!" << endl;
-				adminMenu(landOfSpices, orderSlot);
-				break;
-			}
-		}
-		else{
-			cout << " 잘못된 정보를 입력했습니다! 다시 입력하세요" << endl;
-			_getch();
-			system("cls");
-			adminLogin(landOfSpices, orderSlot);
-		}
-	case 2:
-		cout << " ===============================" << endl;
-		cout << " |                             |" << endl;
-		cout << " |  원하는 옵션을 선택하세요.  |" << endl;
-		cout << " |      1) 메뉴 보기           |" << endl;
-		cout << " |      2) 주문                |" << endl;
-		cout << " |      3) 주문 조회           |" << endl;
-		cout << " |      4) 주문 상태 조회      |" << endl;
-		cout << " |      5) 종료                |" << endl;
-		cout << " |                             |" << endl;
-		cout << " ===============================" << endl;
-
-		switch (userOption){
-		case 1:
-			landOfSpices.displayMenu();
-			system("cls");
-			break;
-		case 2:
-			if (orderSlot < 20){ landOfSpices.setOrder(orderSlot); }
-			else if (orderSlot >= 20) {
-				cout << " 나중에 다시 주문하십시오. 불편을 끼쳐드려 죄송합니다. " << endl;
-			}
-			system("cls");
-			userMenu(landOfSpices, orderSlot);
-			break;
-		case 3:
-			landOfSpices.viewOrderForCurrentCustomer(orderSlot);
-			system("cls");
-			userMenu(landOfSpices, orderSlot);
-			break;
-		case 4:
-			landOfSpices.viewOrderStatusForCurrentCustomer(orderSlot);
-			system("cls");
-			userMenu(landOfSpices, orderSlot);
-			break;
-		case 5:
-			mainMenu(landOfSpices, orderSlot);
-			break;
-		default:
-			cout << "잘못된 옵션입니다. 다시 입력하세요!" << endl;
-			_getch();
-			system("cls");
-			userMenu(landOfSpices, orderSlot);
-		}
-	case 3: //프로그램 종료시 출력되는 문자열
-		cout << " ===============================" << endl;
-		cout << " |                             |" << endl;
-		cout << " |                             |" << endl;
-		cout << " |      조선 식당을 이용       |" << endl;
-		cout << " |     해주셔서 감사합니다     |" << endl;
-		cout << " |                             |" << endl;
-		cout << " |                             |" << endl;
-		cout << " ===============================" << endl;
-		break; 
-	default:
-		cout << "잘못된 옵션입니다. 다시 입력하세요!" << endl;
-		mainMenu(landOfSpices, orderSlot);
-		break;
-	}
-	system("Pause");
-	return 0;
 }
 
 void mainMenu(fastFoodRestaurant lS, int oS){
