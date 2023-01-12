@@ -365,28 +365,18 @@ public:
 	}
 };
 
-void startmenu(fastFoodRestaurant ls, int o, int u, int l); //시작페이지
+void startmenu(fastFoodRestaurant ls, int os); //시작페이지
 void mainMenu(fastFoodRestaurant ls, int os); //메인페이지
 void adminLogin(fastFoodRestaurant ls, int os); //운영자 로그인 페이지
 void adminMenu(fastFoodRestaurant ls, int os); //운영자 페이지
 void userMenu(fastFoodRestaurant ls, int os); //사용자 페이지
 
-int main(){
-	fastFoodRestaurant ls;
-	int o=0, l=0, u=0, os=0;
-	startmenu(ls, o, u, l); //시작페이지
-	mainMenu(ls, os); //메인페이지
-	adminLogin(ls, os); //운영자 로그인 페이지
-	adminMenu(ls, os); //운영자 페이지
-	userMenu(ls, os); //사용자 페이지
-}
-
-void startmenu(fastFoodRestaurant ls, int o, int u, int l) {
+void startmenu(fastFoodRestaurant ls, int os) {
 	int orderSlot = 0;
 	int userOption = 0;
 	int loginOption = 0;
 
-	cout << "프로그램을 실행하기 전, 오늘의 날짜를 입력하세요 " << endl;
+	cout << "프로그램을 실행하기 전, 접속 날짜를 입력하세요 " << endl;
 	ls.setDate();
 
 	system("cls");
@@ -734,4 +724,11 @@ void userMenu(fastFoodRestaurant ls, int os){ //사용자 메뉴 출력
 		system("cls");
 		userMenu(ls, os);
 	}
+}
+
+int main() {
+	fastFoodRestaurant ls;
+	int os = 0;
+	startmenu(ls, os); //시작메세지
+	mainMenu(ls, os); //메인페이지
 }
