@@ -367,9 +367,9 @@ public:
 
 void startmenu(fastFoodRestaurant ls, int os); //시작페이지
 void mainMenu(fastFoodRestaurant ls, int os); //메인페이지
-void adminLogin(fastFoodRestaurant ls, int os); //운영자 로그인 페이지
-void adminMenu(fastFoodRestaurant ls, int os); //운영자 페이지
-void userMenu(fastFoodRestaurant ls, int os); //사용자 페이지
+//void adminLogin(fastFoodRestaurant ls, int os); //운영자 로그인 페이지
+//void adminMenu(fastFoodRestaurant ls, int os); //운영자 페이지
+//void userMenu(fastFoodRestaurant ls, int os); //사용자 페이지
 
 void startmenu(fastFoodRestaurant ls, int os) {
 	int orderSlot = 0;
@@ -445,34 +445,34 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 			case 1:
 				lS.setDeal();
 				system("cls");
-				adminMenu(lS, oS);
+				//adminMenu(lS, oS);
 				break;
 			case 2:
 				lS.removeDeal();
 				system("cls");
-				adminMenu(lS, oS);
+				//adminMenu(lS, oS);
 				break;
 			case 3:
 				lS.viewOrders();
 				system("cls");
-				adminMenu(lS, oS);
+				//adminMenu(lS, oS);
 				break;
 			case 4:
 				lS.changeOrderStatus();
 				system("cls");
-				adminMenu(lS, oS);
+				//adminMenu(lS, oS);
 				break;
 			case 5:
 				lS.displayMenu();
 				system("cls");
-				adminMenu(lS, oS);
+				//adminMenu(lS, oS);
 				break;
 			case 6:
 				mainMenu(lS, orderSlot);
 				break;
 			default:
 				cout << "잘못된 옵션입니다. 다시 입력하세요!" << endl;
-				adminMenu(lS, oS);
+				//adminMenu(lS, oS);
 				break;
 			}
 		}
@@ -481,7 +481,7 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 			cout << "잘못된 정보가 입력됬습니다! 다시 입력하세요" << endl;
 			_getwch();
 			system("cls");
-			adminLogin(lS, oS);
+			//adminLogin(lS, oS);
 		}
 
 	case 2:
@@ -502,7 +502,7 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 		case 1:
 			lS.displayMenu();
 			system("cls");
-			userMenu(lS, oS);
+			//userMenu(lS, oS);
 			break;
 		case 2:
 			if (orderSlot < 20){lS.setOrder(orderSlot);}
@@ -510,17 +510,17 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 				cout << " 나중에 다시 주문하십시오. 불편을 끼쳐드려 죄송합니다. " << endl;
 			}
 			system("cls");
-			userMenu(lS, oS);
+			//userMenu(lS, oS);
 			break;
 		case 3:
 			lS.viewOrderForCurrentCustomer(orderSlot);
 			system("cls");
-			userMenu(lS, oS);
+			//userMenu(lS, oS);
 			break;
 		case 4:
 			lS.viewOrderStatusForCurrentCustomer(orderSlot);
 			system("cls");
-			userMenu(lS, oS);
+			//userMenu(lS, oS);
 			break;
 		case 5:
 			mainMenu(lS, orderSlot);
@@ -529,7 +529,7 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 			cout << "잘못된 옵션입니다. 다시 입력하세요!" << endl;
 			_getwch();
 			system("cls");
-			userMenu(lS, oS);
+			//userMenu(lS, oS);
 		}
 		break;
 
@@ -551,7 +551,7 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 		break;
 	}
 }
-
+/*
 void adminLogin(fastFoodRestaurant ls, int os){ //운영자 로그인 창 출력 함수
 	string username, password;
 
@@ -724,7 +724,7 @@ void userMenu(fastFoodRestaurant ls, int os){ //사용자 메뉴 출력
 		system("cls");
 		userMenu(ls, os);
 	}
-}
+} */
 
 int main() {
 	fastFoodRestaurant ls;
