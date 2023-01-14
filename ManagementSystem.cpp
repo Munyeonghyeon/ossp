@@ -551,6 +551,15 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 		break;
 	}
 }
+
+int main() {
+	fastFoodRestaurant ls;
+	int os = 0;
+	startmenu(ls, os); //시작메세지
+	mainMenu(ls, os); //메인페이지
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
 /*
 void adminLogin(fastFoodRestaurant ls, int os){ //운영자 로그인 창 출력 함수
 	string username, password;
@@ -624,7 +633,7 @@ void adminLogin(fastFoodRestaurant ls, int os){ //운영자 로그인 창 출력
 	}
 }
 
-void adminMenu(fastFoodRestaurant ls, int os){ //운영자로 접속시 출력되는 함수 
+void adminMenu(fastFoodRestaurant ls, int os){ //운영자로 접속시 출력되는 함수
 	int adminOption = 0; //운영자 선택 옵션 1~6
 
 	cout << " ===============================" << endl;
@@ -725,10 +734,3 @@ void userMenu(fastFoodRestaurant ls, int os){ //사용자 메뉴 출력
 		userMenu(ls, os);
 	}
 } */
-
-int main() {
-	fastFoodRestaurant ls;
-	int os = 0;
-	startmenu(ls, os); //시작메세지
-	mainMenu(ls, os); //메인페이지
-}
