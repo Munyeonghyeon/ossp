@@ -367,9 +367,9 @@ public:
 
 void startmenu(fastFoodRestaurant ls, int os); //시작페이지
 void mainMenu(fastFoodRestaurant ls, int os); //메인페이지
-//void adminLogin(fastFoodRestaurant ls, int os); //운영자 로그인 페이지
 void adminMenu(fastFoodRestaurant ls, int os); //운영자 페이지
-//void userMenu(fastFoodRestaurant ls, int os); //사용자 페이지
+void userMenu(fastFoodRestaurant ls, int os); //사용자 페이지
+//void adminLogin(fastFoodRestaurant ls, int os); //운영자 로그인 페이지
 
 void startmenu(fastFoodRestaurant ls, int os) {
 	int orderSlot = 0;
@@ -482,21 +482,8 @@ void mainMenu(fastFoodRestaurant ls, int os) {
 			_getwch();
 			system("cls");
 		}
-
-	if (loginOption == 3) {
-			cout << " ===============================" << endl;
-			cout << " |                             |" << endl;
-			cout << " |                             |" << endl;
-			cout << " |      조선 식당을 이용       |" << endl;
-			cout << " |     해주셔서 감사합니다     |" << endl;
-			cout << " |                             |" << endl;
-			cout << " |                             |" << endl;
-			cout << " ===============================" << endl;
-			break;
-	}
-
 		
-	if (loginOption == 3)
+	if (loginOption == 2)
 		cout << " ===============================" << endl;
 		cout << " |                             |" << endl;
 		cout << " |  원하는 옵션을 선택하세요.  |" << endl;
@@ -542,8 +529,19 @@ void mainMenu(fastFoodRestaurant ls, int os) {
 			_getwch();
 			system("cls");
 			userMenu(ls, os);
+			break;
 		}
-		break;
+		if (loginOption == 3) {
+			cout << " ===============================" << endl;
+			cout << " |                             |" << endl;
+			cout << " |                             |" << endl;
+			cout << " |      조선 식당을 이용       |" << endl;
+			cout << " |     해주셔서 감사합니다     |" << endl;
+			cout << " |                             |" << endl;
+			cout << " |                             |" << endl;
+			cout << " ===============================" << endl;
+			break;
+		}
 	}
 }
 
