@@ -495,8 +495,8 @@ void mainMenu(fastFoodRestaurant ls, int os) {
 			break;
 	}
 
-		/*
-	case 2:
+		
+	if (loginOption == 3)
 		cout << " ===============================" << endl;
 		cout << " |                             |" << endl;
 		cout << " |  원하는 옵션을 선택하세요.  |" << endl;
@@ -512,38 +512,38 @@ void mainMenu(fastFoodRestaurant ls, int os) {
 
 		switch (userOption) {
 		case 1:
-			lS.displayMenu();
+			ls.displayMenu();
 			system("cls");
-			//userMenu(lS, oS);
+			userMenu(ls, os);
 			break;
 		case 2:
-			if (orderSlot < 20) { lS.setOrder(orderSlot); }
+			if (orderSlot < 20) { ls.setOrder(orderSlot); }
 			else if (orderSlot >= 20) {
 				cout << " 나중에 다시 주문하십시오. 불편을 끼쳐드려 죄송합니다. " << endl;
 			}
 			system("cls");
-			//userMenu(lS, oS);
+			userMenu(ls, os);;
 			break;
 		case 3:
-			lS.viewOrderForCurrentCustomer(orderSlot);
+			ls.viewOrderForCurrentCustomer(orderSlot);
 			system("cls");
-			//userMenu(lS, oS);
+			userMenu(ls, os);
 			break;
 		case 4:
-			lS.viewOrderStatusForCurrentCustomer(orderSlot);
+			ls.viewOrderStatusForCurrentCustomer(orderSlot);
 			system("cls");
-			//userMenu(lS, oS);
+			userMenu(ls, os);
 			break;
 		case 5:
-			mainMenu(lS, orderSlot);
+			mainMenu(ls, orderSlot);
 			break;
 		default:
 			cout << "잘못된 옵션입니다. 다시 입력하세요!" << endl;
 			_getwch();
 			system("cls");
-			//userMenu(lS, oS);
+			userMenu(ls, os);
 		}
-		break;*/
+		break;
 	}
 }
 
@@ -553,6 +553,108 @@ int main(){
 	startmenu(ls, os); //시작메세지
 	mainMenu(ls, os); //메인페이지
 }
+
+void adminMenu(fastFoodRestaurant ls, int os){ //운영자로 접속시 출력되는 함수
+		int adminOption = 0;
+		cout << " ===============================" << endl;
+		cout << " |                             |" << endl;
+		cout << " |   원하는 옵션을 선택하세요  |" << endl;
+		cout << " |      1) 거래 추가           |" << endl;
+		cout << " |      2) 거래 취소           |" << endl;
+		cout << " |      3) 주문 조회           |" << endl;
+		cout << " |      4) 주문 상태 변경      |" << endl;
+		cout << " |      5) 메뉴 조회           |" << endl;
+		cout << " |      6) 로그아웃            |" << endl;
+		cout << " |                             |" << endl;
+		cout << " ===============================" << endl;
+		cin >> adminOption;
+		system("cls");
+
+		switch (adminOption)
+		{
+		case 1:
+			ls.setDeal();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 2:
+			ls.removeDeal();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 3:
+			ls.viewOrders();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 4:
+			ls.changeOrderStatus();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 5:
+			ls.displayMenu();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 6:
+			mainMenu(ls, os);
+			break;
+		default:
+			cout << "잘못된 정보가 입력됬습니다! 다시 입력하세요" << endl;
+			adminMenu(ls, os);
+			break;
+		}
+}
+
+void userMenu(fastFoodRestaurant ls, int os){ //사용자 메뉴 출력
+	int userOption = 0; //사용자 선택 옵션 1~5
+
+	cout << " ===============================" << endl;
+	cout << " |                             |" << endl;
+	cout << " |  원하는 옵션을 선택하세요.  |" << endl;
+	cout << " |      1) 메뉴 보기           |" << endl;
+	cout << " |      2) 주문                |" << endl;
+	cout << " |      3) 주문 조회           |" << endl;
+	cout << " |      4) 주문 상태 조회      |" << endl;
+	cout << " |      5) 종료                |" << endl;
+	cout << " |                             |" << endl;
+	cout << " ===============================" << endl;
+	cin >> userOption; //옵션 입력
+	system("cls");
+
+	switch (userOption){
+	case 1:
+		ls.displayMenu();
+		system("cls");
+		userMenu(ls, os);
+		break;
+	case 2:
+		if (os < 20){ls.setOrder(os);}
+		else if (os >= 20){
+			cout << " 나중에 다시 주문하십시오. 불편을 끼쳐드려 죄송합니다. " << endl;
+		} // 주문량이 20이상일 경우 출력되는 안내 메세지
+		system("cls");
+		userMenu(ls, os);
+		break;
+	case 3:
+		ls.viewOrderForCurrentCustomer(os);
+		system("cls");
+		userMenu(ls, os);
+		break;
+	case 4:
+		ls.viewOrderStatusForCurrentCustomer(os);
+		system("cls");
+		userMenu(ls, os);
+		break;
+	case 5:
+		mainMenu(ls, os);
+		break;
+	default:
+		system("cls");
+		userMenu(ls, os);
+	}
+} 
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /*
@@ -627,105 +729,3 @@ void adminLogin(fastFoodRestaurant ls, int os){ //운영자 로그인 창 출력
 		adminLogin(ls, os);
 	}
 }*/
-
-void adminMenu(fastFoodRestaurant ls, int os){ //운영자로 접속시 출력되는 함수
-		int adminOption = 0;
-		cout << " ===============================" << endl;
-		cout << " |                             |" << endl;
-		cout << " |   원하는 옵션을 선택하세요  |" << endl;
-		cout << " |      1) 거래 추가           |" << endl;
-		cout << " |      2) 거래 취소           |" << endl;
-		cout << " |      3) 주문 조회           |" << endl;
-		cout << " |      4) 주문 상태 변경      |" << endl;
-		cout << " |      5) 메뉴 조회           |" << endl;
-		cout << " |      6) 로그아웃            |" << endl;
-		cout << " |                             |" << endl;
-		cout << " ===============================" << endl;
-		cin >> adminOption;
-		system("cls");
-
-		switch (adminOption)
-		{
-		case 1:
-			ls.setDeal();
-			system("cls");
-			adminMenu(ls, os);
-			break;
-		case 2:
-			ls.removeDeal();
-			system("cls");
-			adminMenu(ls, os);
-			break;
-		case 3:
-			ls.viewOrders();
-			system("cls");
-			adminMenu(ls, os);
-			break;
-		case 4:
-			ls.changeOrderStatus();
-			system("cls");
-			adminMenu(ls, os);
-			break;
-		case 5:
-			ls.displayMenu();
-			system("cls");
-			adminMenu(ls, os);
-			break;
-		case 6:
-			mainMenu(ls, os);
-			break;
-		default:
-			cout << "잘못된 정보가 입력됬습니다! 다시 입력하세요" << endl;
-			adminMenu(ls, os);
-			break;
-		}
-}
-/*
-void userMenu(fastFoodRestaurant ls, int os){ //사용자 메뉴 출력
-	int userOption = 0; //사용자 선택 옵션 1~5
-
-	cout << " ===============================" << endl;
-	cout << " |                             |" << endl;
-	cout << " |  원하는 옵션을 선택하세요.  |" << endl;
-	cout << " |      1) 메뉴 보기           |" << endl;
-	cout << " |      2) 주문                |" << endl;
-	cout << " |      3) 주문 조회           |" << endl;
-	cout << " |      4) 주문 상태 조회      |" << endl;
-	cout << " |      5) 종료                |" << endl;
-	cout << " |                             |" << endl;
-	cout << " ===============================" << endl;
-	cin >> userOption; //옵션 입력
-	system("cls");
-
-	switch (userOption){
-	case 1:
-		ls.displayMenu();
-		system("cls");
-		userMenu(ls, os);
-		break;
-	case 2:
-		if (os < 20){ls.setOrder(os);}
-		else if (os >= 20){
-			cout << " 나중에 다시 주문하십시오. 불편을 끼쳐드려 죄송합니다. " << endl;
-		} // 주문량이 20이상일 경우 출력되는 안내 메세지
-		system("cls");
-		userMenu(ls, os);
-		break;
-	case 3:
-		ls.viewOrderForCurrentCustomer(os);
-		system("cls");
-		userMenu(ls, os);
-		break;
-	case 4:
-		ls.viewOrderStatusForCurrentCustomer(os);
-		system("cls");
-		userMenu(ls, os);
-		break;
-	case 5:w
-		mainMenu(ls, os);
-		break;
-	default:
-		system("cls");
-		userMenu(ls, os);
-	}
-} */
