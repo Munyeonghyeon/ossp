@@ -9,7 +9,7 @@ private:
 	string const username = "문영현"; //운영자 계정 아이디
 	string const password = "0000"; //운영자 계정 비밀번호
 public:
-	admin(){ } 
+	admin() { }
 	string getUsername() const { return username; }
 	string getPassword() const { return password; }
 };
@@ -19,18 +19,18 @@ private:
 	string name; //제품 이름
 	string description; //제품 설명
 public:
-	item(string n = "", string d = ""){name = n; description = d;} 
-	void setItemName(string type){ 
+	item(string n = "", string d = "") { name = n; description = d; }
+	void setItemName(string type) {
 		cout << " 제품 이름 입력: " << type;
 		cin >> name; //제품 이름 입력
-	} 
-	void setItemDescription(string type){
-		cout << " 제품 설명 입력: " << type ;
+	}
+	void setItemDescription(string type) {
+		cout << " 제품 설명 입력: " << type;
 		cin >> description; // 제품 설명 입력
 	}
-	string getItemName() const{return name;}
-	string getItemDescription() const { return description; } 
-	void removeItem(){ name = ""; description = ""; } //제품제거 함수
+	string getItemName() const { return name; }
+	string getItemDescription() const { return description; }
+	void removeItem() { name = ""; description = ""; } //제품제거 함수
 };
 
 class deal : public item //거래 <- 제품 (상속)
@@ -43,7 +43,7 @@ private:
 	double dealPrice; //주문가격
 
 public:
-	deal(string dn = " ", int di = 0, string in = " ", string id = " ", string cd = " ", string f = " ", double dp = 0.00) :item(in, id){
+	deal(string dn = " ", int di = 0, string in = " ", string id = " ", string cd = " ", string f = " ", double dp = 0.00) :item(in, id) {
 		dealName = dn;
 		dealItems = di;
 		coldDrink = cd;
@@ -51,7 +51,7 @@ public:
 		dealPrice = dp;
 	}
 
-	void removeDeal(){
+	void removeDeal() {
 		dealName = " ";
 		dealItems = 0;
 		coldDrink = " ";
@@ -60,74 +60,74 @@ public:
 		removeItem();
 	} //주문취소
 
-	void showDeal() const{
+	void showDeal() const {
 		cout << "--------" << dealName << "--------";
 		cout << " 수량: " << dealItems << "--------";
 		cout << " 설명: " << " " << item::getItemDescription();
 		cout << " 음료: " << coldDrink;
-		cout << " 튀김: " << fries ;
-		cout << " 결제 가격: " << dealPrice ;
+		cout << " 튀김: " << fries;
+		cout << " 결제 가격: " << dealPrice;
 	}
 
-	void setDealName(){
+	void setDealName() {
 		cout << " 메뉴명: ";
 		cin >> dealName;
 	} //메뉴명
 
-	void setDealItems(){
+	void setDealItems() {
 		cout << " 메뉴 수량: ";
 		cin >> dealItems;
 	}//
 
-	void setColdDrink(){
+	void setColdDrink() {
 		cout << " 음료: ";
 		cin >> coldDrink;
 	} // 음료주문
 
-	void setFries(){
+	void setFries() {
 		cout << " 튀김: ";
 		cin >> fries;
 	} //튀김주문
 
-	void setDealPrice(){
+	void setDealPrice() {
 		cout << " 결제가격: ";
 		cin >> dealPrice;
 	}//주문가격
 
-	string getDealName() const {return dealName;} //주문명 리턴
-	int getDealItems() const{return dealItems;} //주문수단 리턴
-	string getColdDrink() const{return coldDrink;} //음료 리턴
-	string getFries() const{return fries;} //튀김 리턴
-	double getDealPrice() const{return dealPrice;} //주문가격 리턴
+	string getDealName() const { return dealName; } //주문명 리턴
+	int getDealItems() const { return dealItems; } //주문수단 리턴
+	string getColdDrink() const { return coldDrink; } //음료 리턴
+	string getFries() const { return fries; } //튀김 리턴
+	double getDealPrice() const { return dealPrice; } //주문가격 리턴
 };
 
 class address//주소
 {
 private:
-	string societyName; 
+	string societyName;
 	int streetNumber;
 	int houseNumber;
 public:
-	address(string sn = "", int strn = 0, int hn = 0){
+	address(string sn = "", int strn = 0, int hn = 0) {
 		societyName = sn;
 		streetNumber = strn;
 		houseNumber = hn;
 	}
-	void setSocietyName(){
+	void setSocietyName() {
 		cout << " 건물이름을 입력하세요 ";
 		cin >> societyName; //소셔티 이름 입력
 	}
-	void setStreetNumber(){
+	void setStreetNumber() {
 		cout << " 거리번호를 입력하세요";
 		cin >> streetNumber; //거리번호 입력
 	}
-	void setHouseNumber(){
+	void setHouseNumber() {
 		cout << " 집번호를 입력하세요: ";
 		cin >> houseNumber; //집번호 입력
 	}
-	string getScocietyName() const {return societyName;} //소셔티 이름 리턴
-	int getStreetNumber() const {return streetNumber;} //거리번호 리턴
-	int getHouseNumber() const {return houseNumber;} // 집번호 리턴
+	string getScocietyName() const { return societyName; } //소셔티 이름 리턴
+	int getStreetNumber() const { return streetNumber; } //거리번호 리턴
+	int getHouseNumber() const { return houseNumber; } // 집번호 리턴
 };
 
 class userDetails //시스템 유저
@@ -137,28 +137,28 @@ private:
 	address addressOfCustomer; //유저의 주소
 	long phoneNumber; //유저 핸드폰 번호
 public:
-	userDetails(string n = "", string society = " ", int streetNum = 0, int houseNum = 0, long pn = 0) :addressOfCustomer(society, streetNum, houseNum){
+	userDetails(string n = "", string society = " ", int streetNum = 0, int houseNum = 0, long pn = 0) :addressOfCustomer(society, streetNum, houseNum) {
 		name = n;
 		phoneNumber = pn;
 	}
-	void setName(){
+	void setName() {
 		cout << "이름을 입력하세요 ";
 		cin >> name;
 	}
-	void setAddress(){
+	void setAddress() {
 		addressOfCustomer.setSocietyName();
 		addressOfCustomer.setStreetNumber();
 		addressOfCustomer.setHouseNumber();
 	}
-	void setPhoneNumber(){
+	void setPhoneNumber() {
 		cout << "핸드폰 번호를 입력하세요";
 		cin >> phoneNumber;
 	}
-	string getName() const{ return name; }
-	string getSocietyName() const{ return addressOfCustomer.getScocietyName(); }
-	int getStreetNumber() const{ return addressOfCustomer.getStreetNumber(); }
-	int getHouseNumber() const{ return addressOfCustomer.getHouseNumber(); }
-	long getPhoneNumber() const{ return phoneNumber; }
+	string getName() const { return name; }
+	string getSocietyName() const { return addressOfCustomer.getScocietyName(); }
+	int getStreetNumber() const { return addressOfCustomer.getStreetNumber(); }
+	int getHouseNumber() const { return addressOfCustomer.getHouseNumber(); }
+	long getPhoneNumber() const { return phoneNumber; }
 };
 
 class date //날짜 
@@ -169,17 +169,17 @@ private:
 	int year; //년도
 
 public:
-	date(int d = 0, int m = 0, int y = 0){
+	date(int d = 0, int m = 0, int y = 0) {
 		day = d;
 		month = m;
 		year = y;
 	}
-	void setDay(int d){day = d;}
-	void setMonth(int m){month = m;}
-	void setYear(int y){year = y;}
-	int getDay() const{return day;} // 일 리턴
-	int getMonth() const{return month;} //월 리턴
-	int getYear() const{return year;} //년도 리턴
+	void setDay(int d) { day = d; }
+	void setMonth(int m) { month = m; }
+	void setYear(int y) { year = y; }
+	int getDay() const { return day; } // 일 리턴
+	int getMonth() const { return month; } //월 리턴
+	int getYear() const { return year; } //년도 리턴
 };
 
 class orderDetails //주문사항 클래스
@@ -191,12 +191,12 @@ private:
 	date orderDate; //주문날짜
 	string orderStatus; //주문상태
 public:
-	orderDetails(int oID = 0, string dealN = "", double oP = 0.00, string oS = ""){
+	orderDetails(int oID = 0, string dealN = "", double oP = 0.00, string oS = "") {
 		orderID = oID;
 		dealName = dealN;
 		orderStatus = oS;
 	}
-	void display() const{
+	void display() const {
 		cout << " -------- 주문#" << orderID << " --------" << endl;
 		cout << " 거래명: " << dealName << endl;
 		cout << " 주문 상태: " << orderStatus << endl;
@@ -204,22 +204,22 @@ public:
 		cout << " 고객 번호: " << customerDetails.getPhoneNumber() << endl;
 		cout << " 주문한 날짜: " << orderDate.getDay() << "/" << orderDate.getMonth() << "/" << orderDate.getYear() << " " << endl;
 	}
-	void setOrderID(){orderID++;}
-	void setDealNumber(string dn){dealName = dn;}
-	void setOrderStatus(string oS){orderStatus = oS;}
-	void setCustomerDetails(){
+	void setOrderID() { orderID++; }
+	void setDealNumber(string dn) { dealName = dn; }
+	void setOrderStatus(string oS) { orderStatus = oS; }
+	void setCustomerDetails() {
 		customerDetails.setName();
 		customerDetails.setPhoneNumber();
 		customerDetails.setAddress();
 	}
-	void setOrderDate(int d, int m, int y){
+	void setOrderDate(int d, int m, int y) {
 		orderDate.setDay(d);
 		orderDate.setMonth(m);
 		orderDate.setYear(y);
 	}
-	int getOrderID() const{return orderID;}
-	string getDealName() const{return dealName;}
-	string getOrderStatus() const{return orderStatus;}
+	int getOrderID() const { return orderID; }
+	string getDealName() const { return dealName; }
+	string getOrderStatus() const { return orderStatus; }
 };
 
 class fastFoodRestaurant //식당
@@ -233,24 +233,24 @@ private:
 	int activeOrders;
 	date currentDate;
 public:
-	fastFoodRestaurant(string rn = "", int ao = 0){
+	fastFoodRestaurant(string rn = "", int ao = 0) {
 		restaurantName = rn;
 		activeOrders = ao;
 	}
-	void setRestaurantName(string rn){restaurantName = rn;}
-	void setActiveOrders(){activeOrders++;}
-	string getRestaurantName() const{return restaurantName;}
-	int getActiveOrders() const{return activeOrders;}
-	string getAdminUsername() const{return administrator.getUsername();}
-	string getAdminPassword() const{return administrator.getPassword();}
+	void setRestaurantName(string rn) { restaurantName = rn; }
+	void setActiveOrders() { activeOrders++; }
+	string getRestaurantName() const { return restaurantName; }
+	int getActiveOrders() const { return activeOrders; }
+	string getAdminUsername() const { return administrator.getUsername(); }
+	string getAdminPassword() const { return administrator.getPassword(); }
 
-	void setDeal(){
+	void setDeal() {
 		int flag = 1;
-		while (flag == 1){
+		while (flag == 1) {
 			int i = dealSlot;
 			string itemType;
 
-			for (i; i < 5; i++){
+			for (i; i < 5; i++) {
 				deals[i].setDealName();
 				deals[i].setDealItems();
 
@@ -268,22 +268,22 @@ public:
 				cout << " 거래를 추가하려면 1을 누르고 메뉴를 종료하려면 0을 누르십시오" << endl;
 				cin >> flag;
 
-				if (flag == 0){
+				if (flag == 0) {
 					dealSlot = i + 1;
 					break;
 				}
 			}
 		}
 	}
-	void removeDeal(){
+	void removeDeal() {
 		string removeDealName;
 		int flag = 0;
 
 		cout << " 취소할 음식을 입력하세요: " << endl;
 		cin >> removeDealName;
 
-		for (int i = 0; i < 5; i++){
-			if (removeDealName == deals[i].getDealName()){
+		for (int i = 0; i < 5; i++) {
+			if (removeDealName == deals[i].getDealName()) {
 				deals[i].removeDeal();
 				flag = 1;
 				cout << " 거래가 취소되었습니다" << endl;
@@ -292,7 +292,7 @@ public:
 			}
 		}
 
-		if (flag == 0){
+		if (flag == 0) {
 			cout << " 존재하지 않는 거래입니다." << endl;
 			cout << " 엔터 키를 눌러 메뉴로 돌아가세요." << endl;
 			_getwch();
@@ -309,9 +309,9 @@ public:
 		_getwch();
 	}
 
-	void changeOrderStatus(){
-		for (int i = 0; i < 20; i++){
-			if (orders[i].getOrderID() != 0){
+	void changeOrderStatus() {
+		for (int i = 0; i < 20; i++) {
+			if (orders[i].getOrderID() != 0) {
 				string orderStatus;
 				cout << " 주문# " << orders[i].getOrderID() << endl;
 				cout << " 주문상태(진행 중/취소/배달 중): ", cin >> orderStatus;
@@ -321,14 +321,14 @@ public:
 		cout << " 엔터 키를 눌러 메뉴로 돌아가세요" << endl;
 		_getwch();
 	}
-	void displayMenu() const{
-		for (int i = 0; i < 5; i++){
-			if (deals[i].getDealName() != " "){deals[i].showDeal();}
+	void displayMenu() const {
+		for (int i = 0; i < 5; i++) {
+			if (deals[i].getDealName() != " ") { deals[i].showDeal(); }
 		}
 		cout << " 엔터 키를 눌러 메뉴로 돌아가세요" << endl;
 		_getwch();
 	}
-	void setOrder(int& orderSlot){
+	void setOrder(int& orderSlot) {
 		string dealName;
 
 		orders[orderSlot].setCustomerDetails();
@@ -341,7 +341,7 @@ public:
 		cout << " 엔터 키를 눌러 메뉴로 돌아가세요" << endl;
 		_getwch();
 	}
-	void setDate(){
+	void setDate() {
 		int day, month, year;
 		cin >> year;  cin >> month;  cin >> day;
 
@@ -350,14 +350,14 @@ public:
 		currentDate.setDay(day);
 	}
 
-	void viewOrderForCurrentCustomer(int orderSlot) const{
+	void viewOrderForCurrentCustomer(int orderSlot) const {
 		orders[orderSlot].display();
 
 		cout << "엔터 키를 눌러 메뉴로 돌아가세요." << endl;
 		_getwch();
 	}
 
-	void viewOrderStatusForCurrentCustomer(int orderSlot) const{
+	void viewOrderStatusForCurrentCustomer(int orderSlot) const {
 		cout << " 주문상태: " << orders[orderSlot].getOrderStatus() << endl;
 
 		cout << "엔터 키를 눌러 메뉴로 돌아가세요." << endl;
@@ -368,7 +368,7 @@ public:
 void startmenu(fastFoodRestaurant ls, int os); //시작페이지
 void mainMenu(fastFoodRestaurant ls, int os); //메인페이지
 //void adminLogin(fastFoodRestaurant ls, int os); //운영자 로그인 페이지
-//void adminMenu(fastFoodRestaurant ls, int os); //운영자 페이지
+void adminMenu(fastFoodRestaurant ls, int os); //운영자 페이지
 //void userMenu(fastFoodRestaurant ls, int os); //사용자 페이지
 
 void startmenu(fastFoodRestaurant ls, int os) {
@@ -395,7 +395,7 @@ void startmenu(fastFoodRestaurant ls, int os) {
 	system("cls");
 }
 
-void mainMenu(fastFoodRestaurant lS, int oS){
+void mainMenu(fastFoodRestaurant lS, int oS) {
 	int loginOption = 0;
 	int userOption = 0;
 	int orderSlot = oS;
@@ -413,8 +413,8 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 
 	string username, password;
 
-	switch (loginOption){
-	case 1:
+	while (1) {
+		if (loginOption == 1)
 		cout << " ===============================" << endl;
 		cout << "                              " << endl;
 		cout << "         - 로그인 -           " << endl;
@@ -424,7 +424,7 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 		cout << "                              " << endl;
 		cout << " ===============================" << endl;
 
-		if ((lS.getAdminPassword() == password) && (lS.getAdminUsername() == username)){
+		if ((lS.getAdminPassword() == password) && (lS.getAdminUsername() == username)) {
 			system("cls");
 			int adminOption = 0;
 			cout << " ===============================" << endl;
@@ -441,49 +441,57 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 			cin >> adminOption;
 			system("cls");
 
-			switch (adminOption){
-			case 1:
-				lS.setDeal();
-				system("cls");
-				//adminMenu(lS, oS);
-				break;
-			case 2:
-				lS.removeDeal();
-				system("cls");
-				//adminMenu(lS, oS);
-				break;
-			case 3:
-				lS.viewOrders();
-				system("cls");
-				//adminMenu(lS, oS);
-				break;
-			case 4:
-				lS.changeOrderStatus();
-				system("cls");
-				//adminMenu(lS, oS);
-				break;
-			case 5:
-				lS.displayMenu();
-				system("cls");
-				//adminMenu(lS, oS);
-				break;
-			case 6:
-				mainMenu(lS, orderSlot);
-				break;
-			default:
-				cout << "잘못된 옵션입니다. 다시 입력하세요!" << endl;
-				//adminMenu(lS, oS);
-				break;
+			while (1) {
+				if (adminOption == 1)
+					lS.setDeal();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 2)
+					lS.removeDeal();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 3)
+					lS.viewOrders();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 4)
+					lS.changeOrderStatus();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 5)
+					lS.displayMenu();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 6)
+					system("cls");
+					//startmenu(lS, orderSlot);
+				    break;
 			}
 		}
-
-		else{
+		else {
 			cout << "잘못된 정보가 입력됬습니다! 다시 입력하세요" << endl;
 			_getwch();
 			system("cls");
-			//adminLogin(lS, oS);
 		}
 
+	if (loginOption == 3) {
+			cout << " ===============================" << endl;
+			cout << " |                             |" << endl;
+			cout << " |                             |" << endl;
+			cout << " |      조선 식당을 이용       |" << endl;
+			cout << " |     해주셔서 감사합니다     |" << endl;
+			cout << " |                             |" << endl;
+			cout << " |                             |" << endl;
+			cout << " ===============================" << endl;
+			break;
+	}
+
+		/*
 	case 2:
 		cout << " ===============================" << endl;
 		cout << " |                             |" << endl;
@@ -498,15 +506,15 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 		cin >> userOption;
 		system("cls");
 
-		switch (userOption){
+		switch (userOption) {
 		case 1:
 			lS.displayMenu();
 			system("cls");
 			//userMenu(lS, oS);
 			break;
 		case 2:
-			if (orderSlot < 20){lS.setOrder(orderSlot);}
-			else if (orderSlot >= 20){
+			if (orderSlot < 20) { lS.setOrder(orderSlot); }
+			else if (orderSlot >= 20) {
 				cout << " 나중에 다시 주문하십시오. 불편을 끼쳐드려 죄송합니다. " << endl;
 			}
 			system("cls");
@@ -531,28 +539,11 @@ void mainMenu(fastFoodRestaurant lS, int oS){
 			system("cls");
 			//userMenu(lS, oS);
 		}
-		break;
-
-	case 3:
-		cout << " ===============================" << endl;
-		cout << " |                             |" << endl;
-		cout << " |                             |" << endl;
-		cout << " |      조선 식당을 이용       |" << endl;
-		cout << " |     해주셔서 감사합니다     |" << endl;
-		cout << " |                             |" << endl;
-		cout << " |                             |" << endl;
-		cout << " ===============================" << endl;
-		break;
-
-	default:
-		cout << "잘못된 옵션입니다. 다시 입력하세요!" << endl;
-		_getwch();
-		mainMenu(lS, orderSlot);
-		break;
+		break;*/
 	}
 }
 
-int main() {
+int main(){
 	fastFoodRestaurant ls;
 	int os = 0;
 	startmenu(ls, os); //시작메세지
@@ -631,61 +622,56 @@ void adminLogin(fastFoodRestaurant ls, int os){ //운영자 로그인 창 출력
 		system("cls");
 		adminLogin(ls, os);
 	}
-}
+}*/
 
-void adminMenu(fastFoodRestaurant ls, int os){ //운영자로 접속시 출력되는 함수
-	int adminOption = 0; //운영자 선택 옵션 1~6
+void adminMenu(fastFoodRestaurant lS, int os){ //운영자로 접속시 출력되는 함수
+		int adminOption = 0;
+		cout << " ===============================" << endl;
+		cout << " |                             |" << endl;
+		cout << " |   원하는 옵션을 선택하세요  |" << endl;
+		cout << " |      1) 거래 추가           |" << endl;
+		cout << " |      2) 거래 취소           |" << endl;
+		cout << " |      3) 주문 조회           |" << endl;
+		cout << " |      4) 주문 상태 변경      |" << endl;
+		cout << " |      5) 메뉴 조회           |" << endl;
+		cout << " |      6) 로그아웃            |" << endl;
+		cout << " |                             |" << endl;
+		cout << " ===============================" << endl;
+		cin >> adminOption;
+		system("cls");
 
-	cout << " ===============================" << endl;
-	cout << " |                             |" << endl;
-	cout << " |  원하는 옵션을 선택하세요   |" << endl;
-	cout << " |      1) 거래 추가           |" << endl;
-	cout << " |      2) 거래 취소           |" << endl;
-	cout << " |      3) 주문 조회           |" << endl;
-	cout << " |      4) 주문 상태 변경      |" << endl;
-	cout << " |      5) 메뉴 조회           |" << endl;
-	cout << " |      6) 로그 아웃           |" << endl;
-	cout << " |                             |" << endl;
-	cout << " ===============================" << endl;
-	cin >> adminOption; //옵션 입력
-	system("cls");
+		while (1) {
+			if (adminOption == 1)
+				lS.setDeal();
+			    system("cls");
+			    adminMenu(lS, os);
+			    break;
+			if (adminOption == 2)
+				lS.removeDeal();
+			    system("cls");
+		     	adminMenu(lS, os);
+			    break;
+			if (adminOption == 3)
+				lS.viewOrders();
+			    system("cls");
+			    adminMenu(lS, os);
+			    break;
+			if (adminOption == 4)
+				lS.changeOrderStatus();
+			    system("cls");
+			    adminMenu(lS, os);
+			    break;
+			if (adminOption == 5)
+				lS.displayMenu();
+			    system("cls");
+			    adminMenu(lS, os);
+			    break;
+			if (adminOption == 6)
+			    break;
 
-	switch (adminOption){
-	case 1:
-		ls.setDeal();
-		system("cls");
-		adminMenu(ls, os);
-		break;
-	case 2:
-		ls.removeDeal();
-		system("cls");
-		adminMenu(ls, os);
-		break;
-	case 3:
-		ls.viewOrders();
-		system("cls");
-		adminMenu(ls, os);
-		break;
-	case 4:
-		ls.changeOrderStatus();
-		system("cls");
-		adminMenu(ls, os);
-		break;
-	case 5:
-		ls.displayMenu();
-		system("cls");
-		adminMenu(ls, os);
-		break;
-	case 6:
-		mainMenu(ls, os);
-		break;
-	default:
-		cout << "잘못된 옵션입니다. 다시 입력하세요!" << endl;
-		adminMenu(ls, os);
-		break;
 	}
 }
-
+/*
 void userMenu(fastFoodRestaurant ls, int os){ //사용자 메뉴 출력
 	int userOption = 0; //사용자 선택 옵션 1~5
 
