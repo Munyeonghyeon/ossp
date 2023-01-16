@@ -368,7 +368,7 @@ public:
 void startmenu(fastFoodRestaurant ls, int os); //시작페이지
 void mainMenu(fastFoodRestaurant ls, int os); //메인페이지
 //void adminLogin(fastFoodRestaurant ls, int os); //운영자 로그인 페이지
-//void adminMenu(fastFoodRestaurant ls, int os); //운영자 페이지
+void adminMenu(fastFoodRestaurant ls, int os); //운영자 페이지
 //void userMenu(fastFoodRestaurant ls, int os); //사용자 페이지
 
 void startmenu(fastFoodRestaurant ls, int os) {
@@ -413,8 +413,8 @@ void mainMenu(fastFoodRestaurant lS, int oS) {
 
 	string username, password;
 
-	while (1) { 
-	 if(loginOption==1)
+	while (1) {
+		if (loginOption == 1)
 		cout << " ===============================" << endl;
 		cout << "                              " << endl;
 		cout << "         - 로그인 -           " << endl;
@@ -441,44 +441,56 @@ void mainMenu(fastFoodRestaurant lS, int oS) {
 			cin >> adminOption;
 			system("cls");
 
-			while(1) {
-			 if(adminOption == 1)
-				lS.setDeal();
-				system("cls");
-				//adminMenu(lS, oS);
-				//break;
-			 if(adminOption == 2)
-				lS.removeDeal();
-				system("cls");
-				//adminMenu(lS, oS);
-				//break;
-			 if(adminOption == 3)
-				lS.viewOrders();
-				system("cls");
-				//adminMenu(lS, oS);
-				//break;
-			 if(adminOption == 4)
-				lS.changeOrderStatus();
-				system("cls");
-				//adminMenu(lS, oS);
-				//break;
-			 if(adminOption == 5)
-				lS.displayMenu();
-				system("cls");
-				//adminMenu(lS, oS);
-			    //break;
-			 if(adminOption == 6)
-				 mainMenu(lS, orderSlot);
-				 break;
+			while (1) {
+				if (adminOption == 1)
+					lS.setDeal();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 2)
+					lS.removeDeal();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 3)
+					lS.viewOrders();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 4)
+					lS.changeOrderStatus();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 5)
+					lS.displayMenu();
+				    system("cls");
+				    adminMenu(lS, oS);
+				    //break;
+				if (adminOption == 6)
+					system("cls");
+					//startmenu(lS, orderSlot);
+				    break;
 			}
 		}
-
 		else {
 			cout << "잘못된 정보가 입력됬습니다! 다시 입력하세요" << endl;
 			_getwch();
 			system("cls");
-			//adminLogin(lS, oS);
 		}
+
+	if (loginOption == 3) {
+			cout << " ===============================" << endl;
+			cout << " |                             |" << endl;
+			cout << " |                             |" << endl;
+			cout << " |      조선 식당을 이용       |" << endl;
+			cout << " |     해주셔서 감사합니다     |" << endl;
+			cout << " |                             |" << endl;
+			cout << " |                             |" << endl;
+			cout << " ===============================" << endl;
+			break;
+	}
+
 		/*
 	case 2:
 		cout << " ===============================" << endl;
@@ -528,21 +540,10 @@ void mainMenu(fastFoodRestaurant lS, int oS) {
 			//userMenu(lS, oS);
 		}
 		break;*/
-
-	if(loginOption==3)
-		cout << " ===============================" << endl;
-		cout << " |                             |" << endl;
-		cout << " |                             |" << endl;
-		cout << " |      조선 식당을 이용       |" << endl;
-		cout << " |     해주셔서 감사합니다     |" << endl;
-		cout << " |                             |" << endl;
-		cout << " |                             |" << endl;
-		cout << " ===============================" << endl;
-		break;
 	}
 }
 
-int main() {
+int main(){
 	fastFoodRestaurant ls;
 	int os = 0;
 	startmenu(ls, os); //시작메세지
@@ -642,29 +643,29 @@ void adminMenu(fastFoodRestaurant lS, int os){ //운영자로 접속시 출력�
 		while (1) {
 			if (adminOption == 1)
 				lS.setDeal();
-			system("cls");
-			//adminMenu(lS, oS);
-			//break;
+			    system("cls");
+			    adminMenu(lS, os);
+			    break;
 			if (adminOption == 2)
 				lS.removeDeal();
-			system("cls");
-			//adminMenu(lS, oS);
-			//break;
+			    system("cls");
+		     	adminMenu(lS, os);
+			    break;
 			if (adminOption == 3)
 				lS.viewOrders();
-			system("cls");
-			//adminMenu(lS, oS);
-			//break;
+			    system("cls");
+			    adminMenu(lS, os);
+			    break;
 			if (adminOption == 4)
 				lS.changeOrderStatus();
-			system("cls");
-			//adminMenu(lS, oS);
-			//break;
+			    system("cls");
+			    adminMenu(lS, os);
+			    break;
 			if (adminOption == 5)
 				lS.displayMenu();
-			system("cls");
-			//adminMenu(lS, oS);
-			//break;
+			    system("cls");
+			    adminMenu(lS, os);
+			    break;
 			if (adminOption == 6)
 			    break;
 
