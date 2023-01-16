@@ -395,10 +395,10 @@ void startmenu(fastFoodRestaurant ls, int os) {
 	system("cls");
 }
 
-void mainMenu(fastFoodRestaurant lS, int oS) {
+void mainMenu(fastFoodRestaurant ls, int os) {
 	int loginOption = 0;
 	int userOption = 0;
-	int orderSlot = oS;
+	int orderSlot = os;
 
 	cout << " ===============================" << endl;
 	cout << " |                             |" << endl;
@@ -424,7 +424,7 @@ void mainMenu(fastFoodRestaurant lS, int oS) {
 		cout << "                              " << endl;
 		cout << " ===============================" << endl;
 
-		if ((lS.getAdminPassword() == password) && (lS.getAdminUsername() == username)) {
+		if ((ls.getAdminPassword() == password) && (ls.getAdminUsername() == username)) {
 			system("cls");
 			int adminOption = 0;
 			cout << " ===============================" << endl;
@@ -441,36 +441,40 @@ void mainMenu(fastFoodRestaurant lS, int oS) {
 			cin >> adminOption;
 			system("cls");
 
-			while (1) {
-				if (adminOption == 1)
-					lS.setDeal();
-				    system("cls");
-				    adminMenu(lS, oS);
-				    //break;
-				if (adminOption == 2)
-					lS.removeDeal();
-				    system("cls");
-				    adminMenu(lS, oS);
-				    //break;
-				if (adminOption == 3)
-					lS.viewOrders();
-				    system("cls");
-				    adminMenu(lS, oS);
-				    //break;
-				if (adminOption == 4)
-					lS.changeOrderStatus();
-				    system("cls");
-				    adminMenu(lS, oS);
-				    //break;
-				if (adminOption == 5)
-					lS.displayMenu();
-				    system("cls");
-				    adminMenu(lS, oS);
-				    //break;
-				if (adminOption == 6)
-					system("cls");
-					//startmenu(lS, orderSlot);
-				    break;
+			switch (adminOption)
+			{
+			case 1:
+				ls.setDeal();
+				system("cls");
+				adminMenu(ls, os);
+				break;
+			case 2:
+				ls.removeDeal();
+				system("cls");
+				adminMenu(ls, os);
+				break;
+			case 3:
+				ls.viewOrders();
+				system("cls");
+				adminMenu(ls, os);
+				break;
+			case 4:
+				ls.changeOrderStatus();
+				system("cls");
+				adminMenu(ls, os);
+				break;
+			case 5:
+				ls.displayMenu();
+				system("cls");
+				adminMenu(ls, os);
+				break;
+			case 6:
+				mainMenu(ls, os);
+				break;
+			default:
+				cout << " Wrong option entered, enter option again!" << endl;
+				adminMenu(ls, os);
+				break;
 			}
 		}
 		else {
@@ -624,7 +628,7 @@ void adminLogin(fastFoodRestaurant ls, int os){ //운영자 로그인 창 출력
 	}
 }*/
 
-void adminMenu(fastFoodRestaurant lS, int os){ //운영자로 접속시 출력되는 함수
+void adminMenu(fastFoodRestaurant ls, int os){ //운영자로 접속시 출력되는 함수
 		int adminOption = 0;
 		cout << " ===============================" << endl;
 		cout << " |                             |" << endl;
@@ -640,36 +644,41 @@ void adminMenu(fastFoodRestaurant lS, int os){ //운영자로 접속시 출력�
 		cin >> adminOption;
 		system("cls");
 
-		while (1) {
-			if (adminOption == 1)
-				lS.setDeal();
-			    system("cls");
-			    adminMenu(lS, os);
-			    break;
-			if (adminOption == 2)
-				lS.removeDeal();
-			    system("cls");
-		     	adminMenu(lS, os);
-			    break;
-			if (adminOption == 3)
-				lS.viewOrders();
-			    system("cls");
-			    adminMenu(lS, os);
-			    break;
-			if (adminOption == 4)
-				lS.changeOrderStatus();
-			    system("cls");
-			    adminMenu(lS, os);
-			    break;
-			if (adminOption == 5)
-				lS.displayMenu();
-			    system("cls");
-			    adminMenu(lS, os);
-			    break;
-			if (adminOption == 6)
-			    break;
-
-	}
+		switch (adminOption)
+		{
+		case 1:
+			ls.setDeal();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 2:
+			ls.removeDeal();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 3:
+			ls.viewOrders();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 4:
+			ls.changeOrderStatus();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 5:
+			ls.displayMenu();
+			system("cls");
+			adminMenu(ls, os);
+			break;
+		case 6:
+			mainMenu(ls, os);
+			break;
+		default:
+			cout << "잘못된 정보가 입력됬습니다! 다시 입력하세요" << endl;
+			adminMenu(ls, os);
+			break;
+		}
 }
 /*
 void userMenu(fastFoodRestaurant ls, int os){ //사용자 메뉴 출력
@@ -712,7 +721,7 @@ void userMenu(fastFoodRestaurant ls, int os){ //사용자 메뉴 출력
 		system("cls");
 		userMenu(ls, os);
 		break;
-	case 5:
+	case 5:w
 		mainMenu(ls, os);
 		break;
 	default:
