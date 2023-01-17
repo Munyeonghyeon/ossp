@@ -179,7 +179,7 @@ def main():
     while not done:
         bird = Bird(50, int(WIN_HEIGHT/2 - Bird.HEIGHT/2), 2,(images['bird-wingup'], images['bird-wingdown']))
         pipes = deque()
-        
+        SOUNDS['swoosh'].play()
         while game_running:
               clock.tick(FPS)
 
@@ -205,6 +205,7 @@ def main():
                 # done = True
                 game_over = True
                 game_running = False
+                SOUNDS['hit'].play()
               for x in (0, WIN_WIDTH / 2):
                 display_surface.blit(images['background'], (x, 0))
 
@@ -222,6 +223,7 @@ def main():
               for p in pipes:
                 if p.x + PipePair.WIDTH < bird.x and not p.score_counted:
                     score += 1
+                    SOUNDS['point'].play()
                     p.score_counted = True
 
               score_surface = score_font.render(str(score), True, (255, 255, 255))
@@ -244,8 +246,7 @@ def main():
                     game_over = False
                     score = 0
 
-            gameOverText = "Game Over"
-            gameOver = gameOver_font.render(gameOverText, True, (255, 0, 0))
+            gameOver = gameOver_font.render("Game Over", True, (255, 0, 0))
             gameOver_rect = gameOver.get_rect()
             gameOver_rect.center = (int(WIN_WIDTH / 2), 200)
 
