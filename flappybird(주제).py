@@ -10,6 +10,7 @@ import pygame
 from pygame.locals import *
 
 SOUNDS = {}
+IMAGES = {}
 
 FPS = 60
 ANIMATION_SPEED = 0.18
@@ -170,6 +171,9 @@ def main():
     SOUNDS['swoosh'] = pygame.mixer.Sound('audio/swoosh.wav')
     SOUNDS['wing']   = pygame.mixer.Sound('audio/wing.wav')
 
+    IMAGES['gameover'] = pygame.image.load('images/gameover.png').convert_alpha()
+   # IMAGES['restart'] = pygame.image.load('images/restart.png').convert_alpha()
+
     frame_clock = 0 
     score = 0
     done = paused = False
@@ -221,7 +225,6 @@ def main():
               bird.update()
               display_surface.blit(bird.image, bird.rect)
 
-            # update and display score
               for p in pipes:
                 if p.x + PipePair.WIDTH < bird.x and not p.score_counted:
                     score += 1
@@ -247,16 +250,17 @@ def main():
                     game_running = True
                     game_over = False
                     score = 0
+        
+            
 
-            gameOver = gameOver_font.render("GAME OVER", True, (255, 0, 0))
-            gameOver_rect = gameOver.get_rect()
-            gameOver_rect.center = (int(WIN_WIDTH / 2), 200)
-
+            clock.tick(FPS)
+            pygame.display.update()
+            
             gameOverRestart = gameOver_restart_font.render("Press space to restart!", True, (255, 0, 0))
             gameOverRestart_rect = gameOverRestart.get_rect()
             gameOverRestart_rect.center = (int(WIN_WIDTH / 2), 301)
-
-            display_surface.blit(gameOver, gameOver_rect)
+            
+            display_surface.blit(IMAGES['gameover'], (180, 180))
             display_surface.blit(gameOverRestart, gameOverRestart_rect)
 
             pygame.display.flip()
