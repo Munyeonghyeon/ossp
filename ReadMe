@@ -10,4 +10,8 @@
 ------> visual studio의 확장 프로그램을 이용해 오류 해결
 
 찾아본 2D 아케이드 게임 주제--> flappy bird, shooter game, find key game
+
 최종 선정 ---> flappy bird
+*오픈소스 작동은 문제없음
+*소리출력 기능 추가
+*구상중인 추가 기능) 게임오버화면 추가, 게임의 무한 반복등
