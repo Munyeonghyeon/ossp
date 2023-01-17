@@ -6,10 +6,10 @@ import math
 import os
 from random import randint
 from collections import deque
-
 import pygame
 from pygame.locals import *
 
+SOUNDS = {}
 
 FPS = 60
 ANIMATION_SPEED = 0.18
@@ -160,8 +160,13 @@ def main():
 
     bird = Bird(50, int(WIN_HEIGHT/2 - Bird.HEIGHT/2), 2,
                 (images['bird-wingup'], images['bird-wingdown']))
-
     pipes = deque()
+
+    SOUNDS['die']    = pygame.mixer.Sound('audio/die.wav')
+    SOUNDS['hit']    = pygame.mixer.Sound('audio/hit.wav')
+    SOUNDS['point']  = pygame.mixer.Sound('audio/point.wav')
+    SOUNDS['swoosh'] = pygame.mixer.Sound('audio/swoosh.wav')
+    SOUNDS['wing']   = pygame.mixer.Sound('audio/wing.wav')
 
     frame_clock = 0 
     score = 0
@@ -173,22 +178,28 @@ def main():
             pp = PipePair(images['pipe-end'], images['pipe-body'])
             pipes.append(pp)
 
-        for e in pygame.event.get():
-            if e.type == QUIT or (e.type == KEYUP and e.key == K_ESCAPE):
+        for event in pygame.event.get():
+            if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 done = True
                 break
-            elif e.type == KEYUP and e.key in (K_PAUSE, K_p):
-                paused = not paused
-            elif e.type == MOUSEBUTTONUP or (e.type == KEYUP and
-                    e.key in (K_UP, K_RETURN, K_SPACE)):
-                bird.msec_to_climb = Bird.CLIMB_DURATION
+                #pygame.quit()
+                #sys.exit()
+            elif event.type == KEYDOWN and (event.key == K_SPACE or event.key == K_UP):
+                 bird.msec_to_climb = Bird.CLIMB_DURATION
+                 SOUNDS['wing'].play()
+            elif event.type == KEYUP and event.key in (K_PAUSE, K_p):
+                 paused = not paused
 
+        clock.tick(FPS)
         if paused:
-            continue  
+            # Don't draw anything and don't process events -- we don't
+            # want new pipes to be added while the game is paused!
+            continue 
 
         pipe_collision = any(p.collides_with(bird) for p in pipes)
         if pipe_collision or 0 >= bird.y or bird.y >= WIN_HEIGHT - Bird.HEIGHT:
             done = True
+            SOUNDS['hit'].play()
 
         for x in (0, WIN_WIDTH / 2):
             display_surface.blit(images['background'], (x, 0))
@@ -206,6 +217,7 @@ def main():
         for p in pipes:
             if p.x + PipePair.WIDTH < bird.x and not p.score_counted:
                 score += 1
+                SOUNDS['point'].play()
                 p.score_counted = True
 
         score_surface = score_font.render(str(score), True, (255, 255, 255))
@@ -214,9 +226,6 @@ def main():
 
         pygame.display.flip()
         frame_clock += 1
-    print('Game over! Score: %i' % score)
-    pygame.quit()
-
 
 if __name__ == '__main__':
     main()
