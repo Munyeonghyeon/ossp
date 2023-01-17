@@ -155,6 +155,8 @@ def main():
     pygame.display.set_caption('Pygame Flappy Bird')
 
     clock = pygame.time.Clock()
+    gameOver_font = pygame.font.Font(None, 100, bold=True)
+    gameOver_restart_font = pygame.font.Font(None, 40, bold=True)
     score_font = pygame.font.SysFont(None, 32, bold=True)  # default font
     images = load_images()
 
@@ -171,6 +173,9 @@ def main():
     frame_clock = 0 
     score = 0
     done = paused = False
+    running = True
+    game_over = False
+
     while not done:
         clock.tick(FPS)
 
@@ -190,15 +195,14 @@ def main():
             elif event.type == KEYUP and event.key in (K_PAUSE, K_p):
                  paused = not paused
 
-        clock.tick(FPS)
         if paused:
-            # Don't draw anything and don't process events -- we don't
-            # want new pipes to be added while the game is paused!
             continue 
 
         pipe_collision = any(p.collides_with(bird) for p in pipes)
         if pipe_collision or 0 >= bird.y or bird.y >= WIN_HEIGHT - Bird.HEIGHT:
             done = True
+            game_over = True
+            running = False
             SOUNDS['hit'].play()
 
         for x in (0, WIN_WIDTH / 2):
@@ -226,6 +230,34 @@ def main():
 
         pygame.display.flip()
         frame_clock += 1
+
+        while game_over:
+            clock.tick(FPS)
+
+            for event in pygame.event.get():
+                if (event.type == pygame.KEYUP and event.key == K_ESCAPE) or (event.type == pygame.QUIT):
+                    done = True
+                    game_over = 0
+                    break
+                if event.type == pygame.KEYUP and event.key == K_SPACE:
+                    running = True
+                    game_over = False
+                    score = 0
+
+            gameOver = gameOver_font.render("Game Over", True, (255, 0, 0))
+            gameOver_rect = gameOver.get_rect()
+            gameOver_rect.center = (int(WIN_WIDTH / 2), 200)
+
+            gameOverRestart = gameOver_restart_font.render("Press space to restart!", True, (255, 0, 0))
+            gameOverRestart_rect = gameOverRestart.get_rect()
+            gameOverRestart_rect.center = (int(WIN_WIDTH / 2), 301)
+
+            display_surface.blit(gameOver, gameOver_rect)
+            display_surface.blit(gameOverRestart, gameOverRestart_rect)
+
+            pygame.display.flip()
+    print('Game over! Score: %i' % score)
+    pygame.quit()
 
 if __name__ == '__main__':
     main()
