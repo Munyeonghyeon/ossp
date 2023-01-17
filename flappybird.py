@@ -173,63 +173,63 @@ def main():
     frame_clock = 0 
     score = 0
     done = paused = False
-    running = True
+    game_running = True
     game_over = False
 
     while not done:
-        clock.tick(FPS)
+        bird = Bird(50, int(WIN_HEIGHT/2 - Bird.HEIGHT/2), 2,(images['bird-wingup'], images['bird-wingdown']))
+        pipes = deque()
+        
+        while game_running:
+              clock.tick(FPS)
 
-        if not (paused or frame_clock % msec_to_frames(PipePair.ADD_INTERVAL)):
-            pp = PipePair(images['pipe-end'], images['pipe-body'])
-            pipes.append(pp)
+              if not (paused or frame_clock % msec_to_frames(PipePair.ADD_INTERVAL)):
+                pp = PipePair(images['pipe-end'], images['pipe-body'])
+                pipes.append(pp)
 
-        for event in pygame.event.get():
-            if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
-                done = True
-                break
-                #pygame.quit()
-                #sys.exit()
-            elif event.type == KEYDOWN and (event.key == K_SPACE or event.key == K_UP):
-                 bird.msec_to_climb = Bird.CLIMB_DURATION
-                 SOUNDS['wing'].play()
-            elif event.type == KEYUP and event.key in (K_PAUSE, K_p):
-                 paused = not paused
+              for event in pygame.event.get():
+                if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
+                   done = True
+                   break
+                elif event.type == KEYDOWN and (event.key == K_SPACE or event.key == K_UP):
+                   bird.msec_to_climb = Bird.CLIMB_DURATION
+                   SOUNDS['wing'].play()
+                elif event.type == KEYUP and event.key in (K_PAUSE, K_p):
+                   paused = not paused
 
-        if paused:
-            continue 
+              if paused:
+                  continue 
 
-        pipe_collision = any(p.collides_with(bird) for p in pipes)
-        if pipe_collision or 0 >= bird.y or bird.y >= WIN_HEIGHT - Bird.HEIGHT:
-            done = True
-            game_over = True
-            running = False
-            SOUNDS['hit'].play()
+              pipe_collision = any(p.collides_with(bird) for p in pipes)
+              if pipe_collision or 0 >= bird.y or bird.y >= WIN_HEIGHT - Bird.HEIGHT:
+                # done = True
+                game_over = True
+                game_running = False
+              for x in (0, WIN_WIDTH / 2):
+                display_surface.blit(images['background'], (x, 0))
 
-        for x in (0, WIN_WIDTH / 2):
-            display_surface.blit(images['background'], (x, 0))
+              while pipes and not pipes[0].visible:
+                 pipes.popleft()
 
-        while pipes and not pipes[0].visible:
-            pipes.popleft()
+              for p in pipes:
+                 p.update()
+                 display_surface.blit(p.image, p.rect)
 
-        for p in pipes:
-            p.update()
-            display_surface.blit(p.image, p.rect)
+              bird.update()
+              display_surface.blit(bird.image, bird.rect)
 
-        bird.update()
-        display_surface.blit(bird.image, bird.rect)
+            # update and display score
+              for p in pipes:
+                if p.x + PipePair.WIDTH < bird.x and not p.score_counted:
+                    score += 1
+                    p.score_counted = True
 
-        for p in pipes:
-            if p.x + PipePair.WIDTH < bird.x and not p.score_counted:
-                score += 1
-                SOUNDS['point'].play()
-                p.score_counted = True
+              score_surface = score_font.render(str(score), True, (255, 255, 255))
+              score_x = WIN_WIDTH/2 - score_surface.get_width()/2
+              display_surface.blit(score_surface, (score_x, PipePair.PIECE_HEIGHT))
 
-        score_surface = score_font.render(str(score), True, (255, 255, 255))
-        score_x = WIN_WIDTH/2 - score_surface.get_width()/2
-        display_surface.blit(score_surface, (score_x, PipePair.PIECE_HEIGHT))
-
-        pygame.display.flip()
-        frame_clock += 1
+              pygame.display.flip()
+              frame_clock += 1
 
         while game_over:
             clock.tick(FPS)
@@ -240,11 +240,12 @@ def main():
                     game_over = 0
                     break
                 if event.type == pygame.KEYUP and event.key == K_SPACE:
-                    running = True
+                    game_running = True
                     game_over = False
                     score = 0
 
-            gameOver = gameOver_font.render("Game Over", True, (255, 0, 0))
+            gameOverText = "Game Over"
+            gameOver = gameOver_font.render(gameOverText, True, (255, 0, 0))
             gameOver_rect = gameOver.get_rect()
             gameOver_rect.center = (int(WIN_WIDTH / 2), 200)
 
@@ -256,6 +257,8 @@ def main():
             display_surface.blit(gameOverRestart, gameOverRestart_rect)
 
             pygame.display.flip()
+
+
     print('Game over! Score: %i' % score)
     pygame.quit()
 
