@@ -172,7 +172,7 @@ def main():
     SOUNDS['wing']   = pygame.mixer.Sound('audio/wing.wav')
 
     IMAGES['gameover'] = pygame.image.load('images/gameover.png').convert_alpha()
-   # IMAGES['restart'] = pygame.image.load('images/restart.png').convert_alpha()
+    IMAGES['restart'] = pygame.image.load('images/restart.png').convert_alpha()
 
     frame_clock = 0 
     score = 0
@@ -250,18 +250,12 @@ def main():
                     game_running = True
                     game_over = False
                     score = 0
-        
-            
 
             clock.tick(FPS)
             pygame.display.update()
             
-            gameOverRestart = gameOver_restart_font.render("Press space to restart!", True, (255, 0, 0))
-            gameOverRestart_rect = gameOverRestart.get_rect()
-            gameOverRestart_rect.center = (int(WIN_WIDTH / 2), 301)
-            
             display_surface.blit(IMAGES['gameover'], (180, 180))
-            display_surface.blit(gameOverRestart, gameOverRestart_rect)
+            display_surface.blit(IMAGES['restart'], (110, 300))
 
             pygame.display.flip()
 
