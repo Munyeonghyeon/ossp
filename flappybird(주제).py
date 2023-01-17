@@ -173,6 +173,7 @@ def main():
     frame_clock = 0 
     score = 0
     done = paused = False
+    game_on = True
     game_running = True
     game_over = False
 
