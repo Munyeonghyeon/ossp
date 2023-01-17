@@ -1,7 +1,3 @@
-#! /usr/bin/env python3
-
-"""Flappy Bird, implemented using Pygame."""
-
 import math
 import os
 from random import randint
@@ -173,6 +169,7 @@ def main():
 
     IMAGES['gameover'] = pygame.image.load('images/gameover.png').convert_alpha()
     IMAGES['restart'] = pygame.image.load('images/restart.png').convert_alpha()
+    IMAGES['good'] = pygame.image.load('images/good.png').convert_alpha()
 
     frame_clock = 0 
     score = 0
@@ -230,6 +227,8 @@ def main():
                     score += 1
                     SOUNDS['point'].play()
                     p.score_counted = True
+                if score == 2:
+                        display_surface.blit(IMAGES['good'], (110, 300))
 
               score_surface = score_font.render(str(score), True, (255, 255, 255))
               score_x = WIN_WIDTH/2 - score_surface.get_width()/2
@@ -259,8 +258,7 @@ def main():
 
             pygame.display.flip()
 
-
-    print('Game over! Score: %i' % score)
+    print('FLAPPY BIRD play well')
     pygame.quit()
 
 if __name__ == '__main__':
