@@ -207,6 +207,7 @@ def main():
                 game_over = True
                 game_running = False
                 SOUNDS['hit'].play()
+                SOUNDS['die'].play()
               for x in (0, WIN_WIDTH / 2):
                 display_surface.blit(images['background'], (x, 0))
 
@@ -247,7 +248,7 @@ def main():
                     game_over = False
                     score = 0
 
-            gameOver = gameOver_font.render("Game Over", True, (255, 0, 0))
+            gameOver = gameOver_font.render("GAME OVER", True, (255, 0, 0))
             gameOver_rect = gameOver.get_rect()
             gameOver_rect.center = (int(WIN_WIDTH / 2), 200)
 
