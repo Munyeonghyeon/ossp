@@ -166,10 +166,13 @@ def main():
     SOUNDS['point']  = pygame.mixer.Sound('audio/point.wav')
     SOUNDS['swoosh'] = pygame.mixer.Sound('audio/swoosh.wav')
     SOUNDS['wing']   = pygame.mixer.Sound('audio/wing.wav')
+    SOUNDS['good']   = pygame.mixer.Sound('audio/good.wav')
+    SOUNDS['good_2']   = pygame.mixer.Sound('audio/good_2.wav')
 
     IMAGES['gameover'] = pygame.image.load('images/gameover.png').convert_alpha()
     IMAGES['restart'] = pygame.image.load('images/restart.png').convert_alpha()
     IMAGES['good'] = pygame.image.load('images/good.png').convert_alpha()
+    IMAGES['great'] = pygame.image.load('images/great.png').convert_alpha()
 
     frame_clock = 0 
     score = 0
@@ -226,9 +229,13 @@ def main():
                 if p.x + PipePair.WIDTH < bird.x and not p.score_counted:
                     score += 1
                     SOUNDS['point'].play()
+                    if score == 1 or score == 3:
+                        SOUNDS['good'].play()
                     p.score_counted = True
-                if score == 2:
-                        display_surface.blit(IMAGES['good'], (110, 300))
+                if score == 1:
+                    display_surface.blit(IMAGES['good'], (140, 290))
+                if score == 3:
+                    display_surface.blit(IMAGES['great'], (120, 290))
 
               score_surface = score_font.render(str(score), True, (255, 255, 255))
               score_x = WIN_WIDTH/2 - score_surface.get_width()/2
@@ -255,7 +262,6 @@ def main():
             
             display_surface.blit(IMAGES['gameover'], (180, 180))
             display_surface.blit(IMAGES['restart'], (110, 300))
-
             pygame.display.flip()
 
     print('FLAPPY BIRD play well')
