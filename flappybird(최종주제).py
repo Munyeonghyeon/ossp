@@ -4,7 +4,7 @@ import math
 import os
 from random import randint
 from collections import deque
-
+from sys import exit
 import pygame
 from pygame.locals import *
 
@@ -158,6 +158,30 @@ def frames_to_msec(frames, fps=FPS):
 def msec_to_frames(milliseconds, fps=FPS):
     return fps * milliseconds / 1000.0
 
+# 게임 대기 함수: SPACE 누를 때까지 대기
+def game_waiting(display_surface, clock, background_image):
+    game_wait = True;
+    while game_wait:
+        clock.tick(FPS)
+        
+        # 게임 배경 화면 그리기
+        for x in (0, WIN_WIDTH / 2):
+            display_surface.blit(background_image, (x, 0))
+        
+        wait_for_space_font = pygame.font.Font(None, 40, bold=True)
+        wait_label = wait_for_space_font.render("Press 'SPACE' to start", 1, (255,255,255))
+        display_surface.blit(wait_label, (WIN_WIDTH/2 - wait_label.get_width()/2, 200))
+        pygame.display.update()
+        
+        # SPACE 누르면 while 루프를 빠져 나감
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN: # SPACE을 누르면 게임 시작
+                if event.key == pygame.K_SPACE:
+                    game_wait = False
+    
 # main 게임 함수
 def main():
     pygame.init()
@@ -204,6 +228,9 @@ def main():
     game_running = True
     game_over = False
 
+    # SPACE 누를 때까지 대기
+    game_waiting(display_surface, clock, images['background'])
+        
     # Main game 루프
     while not done:
         # Reset bird and pipes for a new game
